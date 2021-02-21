@@ -2,9 +2,14 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App-table {
+  width:calc(90vw);
+  height:calc(90vh);
+}
+
+.App-task-overflow {
+  max-height:calc(90vh);
+  overflow-y:scroll;
 }
 
 @media (prefers-reduced-motion: no-preference) {

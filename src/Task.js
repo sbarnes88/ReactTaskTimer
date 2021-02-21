@@ -7,6 +7,7 @@ class Task extends React.Component {
         super(props);
         this.state = {time:0, taskName:'',priority:0,completed:false}
         this.handleTaskNameChange = this.handleTaskNameChange.bind(this);
+
         this.startTimer = this.startTimer.bind(this);
         this.stopTimer = this.stopTimer.bind(this);
         this.resetTimer = this.resetTimer.bind(this);
@@ -59,6 +60,7 @@ class Task extends React.Component {
                     <td><button onClick={this.startTimer}>Start</button></td>
                     <td><button onClick={this.stopTimer}>Stop</button></td>
                     <td><button onClick={this.resetTimer}>Reset</button></td>
+                    <td></td>
                    </tr>
         );
     }
