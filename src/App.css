@@ -33,9 +33,10 @@ input[type=checkbox] {
   width: 2.5rem;
   height: 1rem;
   background: #222;
-  margin: 1.2rem 0.8rem;
+  margin: auto;
   position: relative;
   border-radius: 5px;
+  cursor:pointer;
 }
 .checkbox-example label {
   display: block;
@@ -54,6 +55,10 @@ input[type=checkbox] {
   background-color: #2dFF2d;
 }
 
+td {
+  width:calc(90vw);
+}
+
 .App {
   text-align: center;
   background-color:#282c34;
@@ -68,9 +73,14 @@ input[type=checkbox] {
   justify-content: center;
   flex-direction: column;
   min-height:calc(100vh);
+  min-width:calc(90vw);
+  width:calc(90vw);
 }
 
 .App-task-overflow {
+  width:calc(90vw);
+  margin: calc(5vw),0;
+  min-width:calc(90vw);
   max-height:calc(90vh);
   overflow-y:auto;
 }

@@ -13,7 +13,7 @@ class Task extends React.Component {
         this.resetTimer = this.resetTimer.bind(this);
         this.handleCompletedChange = this.handleCompletedChange.bind(this);
         this.handlePriorityChange = this.handlePriorityChange.bind(this);
-
+        this.changeCompleted = this.changeCompleted.bind(this);
     }
 
     uuidv4() {
@@ -53,6 +53,13 @@ class Task extends React.Component {
         this.setState({time:0});
     }
 
+    changeCompleted(event) {
+        event.preventDefault();
+        const newState = !this.state.completed;
+        document.getElementById(this.state.uuid).checked = newState;
+        this.handleCompletedChange({target:{value:newState}});
+    }
+
     handleTaskNameChange(event) {
         this.setState({taskName: event.target.value});
     }
@@ -62,7 +69,6 @@ class Task extends React.Component {
     }
 
     handleCompletedChange(event) {
-        console.log(event);
         if(event.target.value) {
             this.setState({completed:true});
             this.stopTimer();
@@ -79,9 +85,9 @@ class Task extends React.Component {
                     </td>
                     <td><input type="number" value={this.state.priority} onChange={this.handlePriorityChange} min="1" max="10"/></td>
                     <td>
-                    <div class="checkbox-example">
+                    <div className="checkbox-example" onClick={this.changeCompleted}>
                     <input type="checkbox" id={this.state.uuid} value={this.state.completed} onChange={this.handleCompletedChange}/>
-        <label for={this.state.uuid}></label>
+        <label htmlFor={this.state.uuid}></label>
       </div>
                         </td>
                     <td>
