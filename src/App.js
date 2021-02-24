@@ -13,10 +13,8 @@ class App extends React.Component {
   }
 
   addTask() {
-    console.log(this.state.tasks);
     var newTaskList = this.state.tasks;
     var task = new Task();
-    task['uuid'] = this.uuidv4();
     newTaskList.push(task);
     this.setState({tasks: newTaskList})
   }
@@ -31,13 +29,14 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
         <button onClick={this.addTask}>Add Task</button>
         <div className="App-task-overflow">
           <table className="App-table">
             <thead>
               <tr>
                 <td>Task Name</td>
+                <td>Priority</td>
+                <td>Completed</td>
                 <td>Time</td>
                 <td></td>
                 <td></td>
@@ -47,11 +46,10 @@ class App extends React.Component {
               </tr>
             </thead>
             <tbody className="App-task-overflow">
-          {this.state.tasks.map((t) => <Task key={t['uuid']}></Task>)}
+          {this.state.tasks.map((t) => <Task key={t}></Task>)}
           </tbody>
           </table>
           </div>
-        </header>
       </div>
     );
   }

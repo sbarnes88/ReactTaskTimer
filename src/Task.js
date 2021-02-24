@@ -5,14 +5,23 @@ class Task extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {time:0, taskName:'',priority:0,completed:false}
+        this.state = {time:0, taskName:'',priority:0,completed:false, uuid:this.uuidv4()}
         this.handleTaskNameChange = this.handleTaskNameChange.bind(this);
 
         this.startTimer = this.startTimer.bind(this);
         this.stopTimer = this.stopTimer.bind(this);
         this.resetTimer = this.resetTimer.bind(this);
+        this.handleCompletedChange = this.handleCompletedChange.bind(this);
+        this.handlePriorityChange = this.handlePriorityChange.bind(this);
 
     }
+
+    uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+          var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+          return v.toString(16);
+        });
+      }
 
     componentDidMount() {
 
@@ -48,12 +57,33 @@ class Task extends React.Component {
         this.setState({taskName: event.target.value});
     }
 
+    handlePriorityChange(event) {
+        this.setState({priority: event.target.value});
+    }
+
+    handleCompletedChange(event) {
+        console.log(event);
+        if(event.target.value) {
+            this.setState({completed:true});
+            this.stopTimer();
+        }else {
+            this.setState({completed:false});
+        }
+    }
+
     render() {
         return(
                     <tr>
                         <td>
                     <input type="text" value={this.state.taskName} onChange={this.handleTaskNameChange} />
                     </td>
+                    <td><input type="number" value={this.state.priority} onChange={this.handlePriorityChange} min="1" max="10"/></td>
+                    <td>
+                    <div class="checkbox-example">
+                    <input type="checkbox" id={this.state.uuid} value={this.state.completed} onChange={this.handleCompletedChange}/>
+        <label for={this.state.uuid}></label>
+      </div>
+                        </td>
                     <td>
                         <code>{this.getFormattedTime()}</code>
                     </td>
